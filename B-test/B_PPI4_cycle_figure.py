@@ -274,29 +274,31 @@ if __name__ == '__main__':
     B=1
     C=2
     eta = 0.3
-    t_selected=0.6
+    t_selecteds=[0.6,]
+    t_selected=1
     
     theory_time_hens = load_dict('B_PPI4_global_degree_hens_'+str(int(100*B))+'_'+str(int(100*C))).tolist()[0]
     theory_time_multi = load_dict('B_PPI4_global_degree_multi_hens_'+str(int(100*B))+'_'+str(int(100*C))).tolist()[0]
     theory_time_ours = load_dict('B_PPI4_global_degree_multi_weight_'+str(int(100*B))+'_'+str(int(100*C))).tolist()[0]
-
-    signal=signal_propagation(t_selected)
-    scale,xs=signal.simulation(A)
     
-    colors1 = ['#8DDFBF', '#328CA0']
-    path1 = 'B_PPI4_{}_distance_network_hens.pdf'.format(int(100*t_selected))
-    dis1=1
-    figure1 = cycle_figure(G, source, dis1, eta)
-    figure1.cycle_plotting(path1, scale, theory_time_hens, colors1)
-    
-    colors2 = ['#ABBAE1', '#526D92']
-    path2 = 'B_PPI4_{}_distance_network_multi.pdf'.format(int(100*t_selected))
-    dis2=1
-    figure2 = cycle_figure(G, source, dis2, eta)
-    figure2.cycle_plotting(path2, scale, theory_time_multi, colors2)
-    
-    colors3 = ['#EECB8E', '#DC8910']
-    path3 = 'B_PPI4_{}_distance_network_ours.pdf'.format(int(100*t_selected))
-    dis3=1
-    figure3 = cycle_figure(G, source, dis3, eta)
-    figure3.cycle_plotting(path3, scale, theory_time_ours, colors3)
+    for t_selected in t_selecteds:
+        signal=signal_propagation(t_selected)
+        scale,xs=signal.simulation(A)
+        
+        colors1 = ['#8DDFBF', '#328CA0']
+        path1 = 'B_PPI4_{}_distance_network_hens.pdf'.format(int(100*t_selected))
+        dis1=1
+        figure1 = cycle_figure(G, source, dis1, eta)
+        figure1.cycle_plotting(path1, scale, theory_time_hens, colors1)
+        
+        colors2 = ['#ABBAE1', '#526D92']
+        path2 = 'B_PPI4_{}_distance_network_multi.pdf'.format(int(100*t_selected))
+        dis2=1
+        figure2 = cycle_figure(G, source, dis2, eta)
+        figure2.cycle_plotting(path2, scale, theory_time_multi, colors2)
+        
+        colors3 = ['#EECB8E', '#DC8910']
+        path3 = 'B_PPI4_{}_distance_network_ours.pdf'.format(int(100*t_selected))
+        dis3=1
+        figure3 = cycle_figure(G, source, dis3, eta)
+        figure3.cycle_plotting(path3, scale, theory_time_ours, colors3)

@@ -98,7 +98,9 @@ def H2_(x):
 def C_(x):
     return alpha * b/(B*a)*np.power(x,b-a)
 
-def calculate_Wij(H,degrees,xs):
+def calculate_Wij(G,degrees,xs):
+    H=G.copy()
+    H=nx.DiGraph(H)
     r_roots=dict()
     for u in H.nodes:
         r_root=0
