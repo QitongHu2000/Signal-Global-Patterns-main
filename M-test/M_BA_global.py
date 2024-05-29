@@ -178,7 +178,7 @@ def calculate_multi_path(H,source):
             # print(len([i for i in range(1,len(path)-1)]),path,weight)
             for i in range(0,len(path)-1):
                 Rij_multi*=H.edges[path[i+1],path[i]]['Rij']
-                Cij_multi*=H.edges[path[i],path[i+1]]['Cij']
+                Cij_multi*=H.edges[path[i+1],path[i]]['Cij']
                 value_hens+=H.edges[path[i],path[i+1]]['weight_hens']
                 value+=H.edges[path[i],path[i+1]]['weight_hens']
                 value_weight+=H.edges[path[i],path[i+1]]['weight_hens']*weight[i]
